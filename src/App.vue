@@ -1,19 +1,39 @@
 <template>
   <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+    <nav>
+      <router-link to="/">Home</router-link> |
+      <router-link to="/about">About</router-link>
+    </nav>
+    <router-view />
   </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import Vue from "vue";
+import VueRouter from "vue-router";
+import HomeView from "./views/HomeView.vue";
+import AboutView from "./views/AboutView.vue";
 
-export default {
-  name: 'App',
-  components: {
-    HelloWorld
-  }
-}
+Vue.use(VueRouter);
+
+const router = new VueRouter({
+  routes: [
+    {
+      path: "/",
+      name: "home",
+      component: HomeView,
+    },
+    {
+      path: "/about",
+      name: "about",
+      component: AboutView,
+    },
+  ],
+});
+
+Vue.mixin({ router });
+
+export default router;
 </script>
 
 <style>
@@ -23,6 +43,18 @@ export default {
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
-  margin-top: 60px;
+}
+
+nav {
+  padding: 30px;
+}
+
+nav a {
+  font-weight: bold;
+  color: #2c3e50;
+}
+
+nav a.router-link-exact-active {
+  color: #42b983;
 }
 </style>
