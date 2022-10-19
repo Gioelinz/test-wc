@@ -1,5 +1,7 @@
 # test-wc
 
+embedding your web-component on HTML pages you like, run npm run build and check dist/demo.html
+
 ## Project setup
 ```
 npm install
